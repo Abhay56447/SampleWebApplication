@@ -1,10 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using SampleWebApplication.Data;
+using SQLitePCL;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container. This is for Dependency Injection.
 builder.Services.AddControllersWithViews();
+
+// Set Batteries for SQL Lite server
+// Initialize SQLite provider
+Batteries.Init();
 
 // Setting up database as Dependency Injection
 builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
