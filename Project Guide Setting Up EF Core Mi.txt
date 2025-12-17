@@ -1,0 +1,123 @@
+Project Guide: Setting Up EF Core Migrations with SQLite in ASP.NET Core
+
+Objectives
+
+Configure an ASP.NET Core project to use Entity Framework Core 9.0.10 with a SQLite database.
+
+Enable migrations and database updates using the dotnet ef CLI or Visual Studio Package Manager Console.
+
+Resolve common errors related to tooling, version mismatches, and SQLite initialization.
+
+Step-by-Step Setup
+
+1. Install Required Packages
+
+Run the following commands in your project folder:
+
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 9.0.10
+dotnet add package Microsoft.EntityFrameworkCore.Tools --version 9.0.10
+dotnet add package SQLitePCLRaw.bundle_e_sqlite3
+
+2. Configure Connection String
+
+In appsettings.json:
+
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=app.db"
+  }
+}
+
+3. Create Your DbContext
+
+using Microsoft.EntityFrameworkCore;
+
+public class ApplicationDbContext : DbContext
+{
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
+    public DbSet<User> Users { get; set; }
+}
+
+public class User
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+4. Initialize SQLite in Program.cs
+
+using SQLitePCL;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Initialize SQLite provider
+Batteries.Init();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+var app = builder.Build();
+app.Run();
+
+5. Run Migrations
+
+Make sure the EF CLI tool is installed:
+
+dotnet tool uninstall --global dotnet-ef
+dotnet tool install --global dotnet-ef --version 9.0.10
+
+Then run:
+
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+Common Issues & Fixes
+
+Issue 1: dotnet ef not found
+
+Install the CLI tool:
+
+dotnet tool install --global dotnet-ef --version 9.0.10
+
+Or use Visual Studio Package Manager Console:
+
+Add-Migration InitialCreate
+Update-Database
+
+Issue 2: System.Runtime assembly error
+
+Ensure your project targets .NET 9.0:
+
+<TargetFramework>net9.0</TargetFramework>
+
+Align EF Core packages and CLI tool to version 9.0.10.
+
+Issue 3: You need to call SQLitePCL.raw.SetProvider()
+
+Install SQLitePCLRaw.bundle_e_sqlite3.
+
+Call Batteries.Init(); in Program.cs.
+
+Action Items
+
+[ ] Confirm your project targets .NET 9.0.
+
+[ ] Install EF Core 9.0.10 packages and CLI tool.
+
+[ ] Add SQLitePCLRaw.bundle_e_sqlite3 and call Batteries.Init().
+
+[ ] Run migrations and verify app.db is created.
+
+Future Considerations
+
+Add data seeding during migrations for test data.
+
+Explore DB Browser for SQLite to inspect schema and data.
+
+Consider unit testing with an in-memory SQLite database.
+
+This guide provides a minimal working setup for EF Core 9.0.10 with SQLite in ASP.NET Core, resolving the errors encountered during migration.
+
+Would you like me to extend this with a full sample project repository structure (folders, files, and code snippets) so you can copy-paste and run it directly?
