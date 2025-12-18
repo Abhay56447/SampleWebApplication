@@ -10,8 +10,8 @@ using SampleWebApplication.Data;
 namespace SampleWebApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251217022407_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20251217162651_SeedCategoryTable")]
+    partial class SeedCategoryTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
