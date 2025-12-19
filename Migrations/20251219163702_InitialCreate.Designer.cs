@@ -2,6 +2,7 @@
 using LibraryManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251219163702_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
@@ -30,10 +33,6 @@ namespace LibraryManagementSystem.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -64,7 +63,6 @@ namespace LibraryManagementSystem.Migrations
                             Author = "Author A1",
                             CategoryId = 1,
                             Description = "First action book",
-                            ImageUrl = "",
                             Likes = 10,
                             Price = 100.0,
                             Review = "Sample Review 1",
@@ -76,7 +74,6 @@ namespace LibraryManagementSystem.Migrations
                             Author = "Author A2",
                             CategoryId = 1,
                             Description = "Second action book",
-                            ImageUrl = "",
                             Likes = 15,
                             Price = 120.0,
                             Review = "Sample Review 2",
@@ -88,7 +85,6 @@ namespace LibraryManagementSystem.Migrations
                             Author = "Author A3",
                             CategoryId = 1,
                             Description = "Third action book",
-                            ImageUrl = "",
                             Likes = 20,
                             Price = 150.0,
                             Review = "Sample Review 3",
@@ -100,7 +96,6 @@ namespace LibraryManagementSystem.Migrations
                             Author = "Author S1",
                             CategoryId = 2,
                             Description = "First scifi book",
-                            ImageUrl = "",
                             Likes = 12,
                             Price = 230.0,
                             Review = "Sample review 1",
@@ -112,7 +107,6 @@ namespace LibraryManagementSystem.Migrations
                             Author = "Author S2",
                             CategoryId = 2,
                             Description = "Second scifi book",
-                            ImageUrl = "",
                             Likes = 18,
                             Price = 230.0,
                             Review = "Sample review 3",
@@ -124,7 +118,6 @@ namespace LibraryManagementSystem.Migrations
                             Author = "Author S3",
                             CategoryId = 2,
                             Description = "Third scifi book",
-                            ImageUrl = "",
                             Likes = 22,
                             Price = 230.0,
                             Review = "Sample review 4",
@@ -136,7 +129,6 @@ namespace LibraryManagementSystem.Migrations
                             Author = "Author N1",
                             CategoryId = 3,
                             Description = "First non fiction book",
-                            ImageUrl = "",
                             Likes = 8,
                             Price = 450.5,
                             Review = "Sample review book 1",
@@ -148,7 +140,6 @@ namespace LibraryManagementSystem.Migrations
                             Author = "Author N2",
                             CategoryId = 3,
                             Description = "Second non fiction book",
-                            ImageUrl = "",
                             Likes = 14,
                             Price = 600.0,
                             Review = "Sample review book 2",
@@ -160,7 +151,6 @@ namespace LibraryManagementSystem.Migrations
                             Author = "Author N3",
                             CategoryId = 3,
                             Description = "Third non fiction book",
-                            ImageUrl = "",
                             Likes = 19,
                             Price = 580.0,
                             Review = "Sample review book 3",

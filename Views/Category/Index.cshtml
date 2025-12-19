@@ -15,6 +15,9 @@
                     <td>
                         <a class="btn btn-secondary" asp-route-id="@cat.Id" asp-controller="Category" asp-action="Delete">Delete</a>
                     </td>
+                    <td>
+                        <a class="btn btn-primary" asp-route-id="@cat.Id" asp-controller="Book" asp-action="Index">Books</a>
+                    </td>
                 </tr>
             }
         </tbody>
