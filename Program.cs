@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SampleWebApplication.Data;
+using LibraryManagementSystem.Data;
 using SQLitePCL;
 
 var builder = WebApplication.CreateBuilder(args);

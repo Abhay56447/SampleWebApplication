@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SampleWebApplication.Models;
+using LibraryManagementSystem.Models;
 
-namespace SampleWebApplication.Data
+namespace LibraryManagementSystem.Data
 {
     public class ApplicationDbContext : DbContext
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SampleWebApplication.Data;
-using SampleWebApplication.Models;
+using LibraryManagementSystem.Data;
+using LibraryManagementSystem.Models;
 
-namespace SampleWebApplication.Controllers
+namespace LibraryManagementSystem.Controllers
 {
     public class CategoryController : Controller
     {
