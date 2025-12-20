@@ -1,18 +1,28 @@
 ﻿@model List<Book>
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    @foreach (var book in Model)
-    {
-        <div class="col">
-            <div class="card h-100">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">@book.Title</h5>
-                    <p class="card-text">@book.Description</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-body-secondary">@book.Review</small>
-                </div>
-            </div>
-        </div>
-    }
+<div class="col m-4">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Likes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+               <tr>
+                    <td>@book.Title</td>
+                   <td>@book.Description</td>
+                    <td>@book.Author</td>
+                    <td>@book.Price</td>
+                    <td><img width="16" height="16" src="https://img.icons8.com/tiny-color/16/like.png" alt="like" />@book.Likes</td>
+               </tr>
+            }
+        </tbody>
+
+    </table>
+    
 </div>
